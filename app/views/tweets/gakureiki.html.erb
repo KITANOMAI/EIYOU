@@ -1,0 +1,7 @@
+う
+<h1>学齢期</h1>
+<% @posts.each do |t| %>
+    <% if t.category == "gakureiki" %>  
+    <p>内容:<%= t.content %></p>
+    <% end %>
+<% end %>

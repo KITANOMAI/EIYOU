@@ -1,0 +1,7 @@
+い
+<h1>幼児期</h1>
+<% @posts.each do |t| %>
+    <% if t.category == "youziki" %>  
+    <p>内容:<%= t.content %></p>
+    <% end %>
+<% end %>

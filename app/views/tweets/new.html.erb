@@ -1,0 +1,30 @@
+<h1>GeekTwitter</h1>
+<h3>新規Tweet</h3>
+<%= form_for @tweet do |f| %>
+    <div class="field">
+        <%= f.label :body %>
+        <%= f.text_field :body, :size => 140 %>
+    </div>
+    
+    
+    <%= f.label :result_detail,"内容" %>
+    <%= f.text_field :result_detail %>
+    <%= f.label :result_key,"診断結果識別用" %>
+    <%= f.text_field :result_key %>
+    <%= f.select :category, [["乳児期", "nyuuziki"], ["幼児期", "youziki"], ["学齢期", "gakureiki"], ["中学生", "cyuugakusei"], ["青年期", "seinennki"], ["壮年期", "sounennki"], ["中年期", "cyuunennki"], ["老年期", "rounennki"], ["スポーツをする人", "sports"], ["妊娠期", "ninnsinnki"]], include_blank: "どの投稿？" %>
+    <%= f.submit "投稿する" %>
+    
+
+    
+    <div class='form-group'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+<% end %>
+<%= link_to "Tweet一覧に戻る", tweets_path %>

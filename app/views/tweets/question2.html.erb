@@ -1,0 +1,11 @@
+<% if params[:answer] == "A" %>
+    <h1>Aを選んだあなた</h1>
+    <h2>質問その2</h2>
+    <a href="/tweets/question3?answer=C">Cを選ぶ</a>
+    <a href="/tweets/question3?answer=D">Dを選ぶ</a>
+<% elsif params[:answer] == "B" %>
+    <h1>Bを選んだあなた</h1>
+    <h2>質問その2</h2>
+    <a href="/tweets/question3?answer=E">Eを選ぶ</a>
+    <a href="/tweets/question3?answer=F">Fを選ぶ</a>
+<% end %>

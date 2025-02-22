@@ -1,0 +1,7 @@
+こ
+<h1>妊娠期</h1>
+<% @posts.each do |t| %>
+    <% if t.category == "ninnsinnki" %>  
+    <p>内容:<%= t.content %></p>
+    <% end %>
+<% end %>

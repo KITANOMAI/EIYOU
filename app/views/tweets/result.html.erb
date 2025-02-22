@@ -1,0 +1,12 @@
+<div id="tweets">
+    <% @tweets.each do |tweet| %>
+        <% if params[:answer] == tweet.result_key %>
+            <%= tweet.body %>
+            <%= tweet.result_detail %>
+            <%= tweet.category %>
+            <p>
+            <%= link_to "Show this tweet", tweet %>
+            </p>
+            <% end %>
+    <% end %>
+</div>

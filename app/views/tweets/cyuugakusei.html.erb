@@ -1,0 +1,7 @@
+え
+<h1>中学生</h1>
+<% @posts.each do |t| %>
+    <% if t.category == "cyuugakusei" %>  
+    <p>内容:<%= t.content %></p>
+    <% end %>
+<% end %>
