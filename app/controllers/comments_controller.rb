@@ -14,6 +14,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def love 
+    @comment = Comment.find(params[:id])
+    @comment.loves.create(user: current_user) 
+    redirect_back fallback_location: root_path 
+  end
+
   private
 
     def comment_params

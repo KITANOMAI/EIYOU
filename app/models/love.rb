@@ -2,6 +2,6 @@ class Love < ApplicationRecord
   belongs_to :comment
   belongs_to :user
 
-  validates_uniqueness_of :comment_id, scope: :user_id
+  validates_uniqueness_of :user_id, scope: :comment_id
   #コメントにいいね
 end

@@ -16,7 +16,20 @@
     </div>
     <%= link_to "編集する", edit_tweet_path(t.id) %>
     <%= button_to "削除する", tweet_path(t.id), method: :delete %> 
-    
+
+    <% if user_signed_in? %>
+        <% if current_user.already_liked?(t) %>
+            <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), data: { turbo_method: :delete } do %>
+                <i class="fa-regular fa-circle-down">保存</i><%= t.likes.count %>
+            <% end %>
+        <% else %>
+            <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), data: { turbo_method: :post }  do %>
+                <i class="fa-regular fa-circle-down"></i>保存<%= t.likes.count %>
+            <% end %>
+        <% end %>
+    <% else %>
+        <i class="fa-regular fa-circle-down">保存</i><%= t.likes.count %>
+    <% end %>
     <% end %>
 
     <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
@@ -35,6 +48,5 @@
     <% end %>
     <%= submit_tag '検索' %>
 <% end %>
-
 
 

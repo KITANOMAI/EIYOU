@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
+  get 'tweets/:tweet_id/likes' => 'likes#create'
+  get 'tweets/:tweet_id/likes/:id' => 'likes#destroy'
   resources :tweets do
     resources :likes, only: [:create, :destroy]
       collection do

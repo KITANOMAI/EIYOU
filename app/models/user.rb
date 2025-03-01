@@ -15,14 +15,14 @@ class User < ApplicationRecord
   has_many :liked_tweets, through: :likes, source: :tweet
 
   has_many :loves, dependent: :destroy
-  has_many :loved_tweets, through: :loves, source: :comment
+  has_many :loved_comments, through: :loves, source: :comment
 
   def already_liked?(tweet)
     self.likes.exists?(tweet_id: tweet.id)
   end
 
-  def already_loved?(comennt)
-    self.loves.exists?(comment_id: comennt.id)
+  def already_loved?(comment) 
+    Love.exists?(user_id: self.id, comment_id: comment.id) 
   end
 
 end
