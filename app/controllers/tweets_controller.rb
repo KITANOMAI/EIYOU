@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
 
-  before_action :if_not_admin, except: [:show, :index]
+  # before_action :if_not_admin, except: [:show, :index]
 
   def index
     @tweets = Tweet.all
@@ -105,7 +105,7 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:body,:category,:result_key,:result_detail,:image,tags_ids:[])
+    params.require(:tweet).permit(:body, :category, :result_key, :result_detail, :image, tags_ids:[])
   end
   def if_not_admin
       redirect_to root_path unless current_user.email == ENV['ADMIN_EMAIL']

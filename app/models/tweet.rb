@@ -9,8 +9,8 @@ class Tweet < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
 
-  has_many :loves, dependent: :destroy
-  has_many :loved_users, through: :loves, source: :user
+  has_many :goods, dependent: :destroy
+  has_many :good_users, through: :goods, source: :user
 
 
 end
