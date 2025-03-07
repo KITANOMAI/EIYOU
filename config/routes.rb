@@ -31,17 +31,18 @@ Rails.application.routes.draw do
   get 'tweets/:tweet_id/likes/:id' => 'likes#destroy'
   resources :tweets do
     resources :likes, only: [:create, :destroy]
-      collection do
-        get "question1"
-        get "question2"
-        get "question3"
-        get "result"
-      end
-  end
-
-  resources :comments, only: [:create] do
-      resources :loves, only: [:create, :destroy]
-  end
   
+    collection do
+      get "question1"
+      get "question2"
+      get "question3"
+      get "result"
+    end
+  
+    resources :comments, only: [:create] do
+      resources :goods, only: [:create, :destroy]
+    end
+  end  
+
 
 end
