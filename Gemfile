@@ -83,3 +83,5 @@ group :production do
 end
 
 gem 'sass-rails'
+
+gem 'psych', '5.1.0'
