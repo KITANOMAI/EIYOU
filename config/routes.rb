@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   get 'tweets/:tweet_id/likes' => 'likes#create'
   get 'tweets/:tweet_id/likes/:id' => 'likes#destroy'
+  
   resources :tweets do
     resources :likes, only: [:create, :destroy]
   

@@ -67,6 +67,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_083340) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "loves", force: :cascade do |t|
+    t.integer "comment_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_loves_on_comment_id"
+    t.index ["user_id"], name: "index_loves_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -114,6 +123,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_083340) do
   add_foreign_key "goods", "users"
   add_foreign_key "likes", "tweets"
   add_foreign_key "likes", "users"
+  add_foreign_key "loves", "comments"
+  add_foreign_key "loves", "users"
   add_foreign_key "tweet_tag_relations", "tags"
   add_foreign_key "tweet_tag_relations", "tweets"
 end
