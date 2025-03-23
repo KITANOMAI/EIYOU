@@ -2,10 +2,20 @@
 <h3>新規Tweet</h3>
 
 <%= form_with(model: @tweet, local: true) do |f| %>
-    <div class="field">
+
+    
+
+    
+
+    <div class="post-container">
+    <p class="title">投稿フォーム</p>
+    <%= form_for(@tweet, :url => { controller:'tweets', action:'create'})do |f| %>
+    <%= f.label :投稿内容 %>
+        <br>
+        
         <%= f.label :body %>
-        <%= f.text_field :body, size: 140 %>
-    </div>
+        <%= f.text_field :body, size: 110 %>
+    
 
     <%= f.label :result_detail, "内容" %>
     <%= f.text_field :result_detail %>
@@ -17,27 +27,20 @@
         ["乳児期", "nyuuziki"], 
         ["幼児期", "youziki"], 
         ["学齢期", "gakureiki"], 
-        ["中学生", "cyuugakusei"], 
-        ["青年期", "seinennki"], 
+        ["思春期", "sisyunnki"], 
+        ["若年期", "zyakunennki"], 
+        ["成人期", "seizinnki"], 
         ["壮年期", "sounennki"], 
-        ["中年期", "cyuunennki"], 
         ["老年期", "rounennki"], 
         ["スポーツをする人", "sports"], 
         ["妊娠期", "ninnsinnki"]
-    ], include_blank: "どの投稿？" %>
-
-    <div class='form-group'>
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-            <div class='form-check'>
-                <%= tag.label class: 'form-check-label' do %>
-                    <%= tag.check_box class: 'form-check-input' %>
-                    <%= tag.text %>
-                <% end %>
-            </div>
-        <% end %>
-    </div>
-
-    <%= f.submit "投稿する" %>
+    ], include_blank: "ライフステージ選択" %>
+        <%= f.text_field :body,size: 140%>
+        <br>
+    <%= f.submit "送信"%>
+    <br>
+    
+</div>
 <% end %>
 
-<%= link_to "Tweet一覧に戻る", tweets_path %>
+<% end %>

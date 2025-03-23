@@ -17,19 +17,20 @@ Rails.application.routes.draw do
   get 'tweets/nyuuziki' => 'tweets#nyuuziki'
   get 'tweets/youziki' => 'tweets#youziki'
   get 'tweets/gakureiki' => 'tweets#gakureiki'
-  get 'tweets/cyuugakusei' => 'tweets#cyuugakusei'
-  get 'tweets/seinennki' => 'tweets#seinennki'
+  get 'tweets/sisyunnki' => 'tweets#sisyunnki'
+  get 'tweets/zyakunennki' => 'tweets#zyakunennki'
+  get 'tweets/seizinnki' => 'tweets#seizinnki'
   get 'tweets/sounennki' => 'tweets#sounennki'
-  get 'tweets/cyuunennki' => 'tweets#cyuunennki'
   get 'tweets/rounennki' => 'tweets#rounennki'
   get 'tweets/sports' => 'tweets#sports'
-  get 'tweets/nennsinnki' => 'tweets#nennsinnki'
+  get 'tweets/ninnsinnki' => 'tweets#ninnsinnki'
 
   resources :users, only: [:show]
 
-  get 'tweets/:tweet_id/likes' => 'likes#create'
-  get 'tweets/:tweet_id/likes/:id' => 'likes#destroy'
+  post 'tweets/:tweet_id/likes' => 'likes#create'
+  post 'tweets/:tweet_id/likes/:id' => 'likes#destroy'
   
+
   resources :tweets do
     resources :likes, only: [:create, :destroy]
   
@@ -44,6 +45,8 @@ Rails.application.routes.draw do
       resources :goods, only: [:create, :destroy]
     end
   end  
+
+  
 
 
 end

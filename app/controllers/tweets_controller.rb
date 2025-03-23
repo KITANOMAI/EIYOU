@@ -42,6 +42,7 @@ class TweetsController < ApplicationController
   def edit
     @tweet = Tweet.find(params[:id])
   end
+
   def update
     tweet = Tweet.find(params[:id])
     if tweet.update(tweet_params)
@@ -50,7 +51,7 @@ class TweetsController < ApplicationController
       redirect_to :action => "new"
     end
   end
-  
+
   def destroy
     tweet = Tweet.find(params[:id])
     tweet.destroy
@@ -71,19 +72,19 @@ class TweetsController < ApplicationController
       @posts = Tweet.all
     end
   
-    def cyuugakusei
+    def sisyunnki
       @posts = Tweet.all
     end
   
-    def seinennki
+    def zyakunennki
       @posts = Tweet.all
     end
   
-    def sounennki
+    def seizinnki
       @posts = Tweet.all
     end
 
-    def cyuunennki
+    def sounennki
       @posts = Tweet.all
     end
   
@@ -95,7 +96,7 @@ class TweetsController < ApplicationController
       @posts = Tweet.all
     end
 
-    def nennsinnki
+    def ninnsinnki
       @posts = Tweet.all
     end
 
@@ -105,7 +106,7 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:body, :category, :result_key, :result_detail, :image, tags_ids:[])
+    params.require(:tweet).permit(:body, :user_id, :category, :result_key, :result_detail, :image, tags_ids:[])
   end
   def if_not_admin
       redirect_to root_path unless current_user.email == ENV['ADMIN_EMAIL']

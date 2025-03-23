@@ -1,60 +1,88 @@
-<h1>GeekTwitter</h1>
+
 <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
 
 <%= stylesheet_link_tag 'index', :media => "all" %>
 
-<h3>Tweet一覧</h3>
-<%= link_to "新規投稿へ", new_tweet_path %>
-<div class="tweets-container">
-    <% @tweets.each do |t| %>
-    <div class="tweet">
-    <div class="main-box">
-        <div class="left-container"><%= t.body %></div>
-        <div class="right-container">
-        
-        <%= link_to t.user.name, user_path(t.user.id) %> 
+<h3>ライフステージ一覧</h3>
+<%= link_to tweets_nyuuziki_path do %>
+    <%= image_tag '乳児期.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+乳児期
+<%= link_to tweets_youziki_path do %>
+    <%= image_tag '幼児期.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+幼児期
+<%= link_to tweets_gakureiki_path do %>
+    <%= image_tag '学齢期.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+学齢期
+<%= link_to tweets_sisyunnki_path do %>
+    <%= image_tag '中高生.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+思春期
+<%= link_to tweets_zyakunennki_path do %>
+    <%= image_tag '若年期.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+若年期
+<%= link_to tweets_seizinnki_path do %>
+    <%= image_tag '成人期.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+成人期
+<%= link_to tweets_sounennki_path do %>
+    <%= image_tag '壮年期.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+壮年期
+<%= link_to tweets_rounennki_path do %>
+    <%= image_tag '老年期.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+老年期
+<%= link_to tweets_sports_path do %>
+    <%= image_tag 'スポーツをする人.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+スポーツをする人
+<%= link_to tweets_ninnsinnki_path do %>
+    <%= image_tag '妊娠期.jpg', size: '200x200', class:"logo-image" %>
+<% end %>
+妊娠期
 
-        <%= t.user.email %> 
-        <%= t.body %>
-        <%= t.created_at %>
-        <%= link_to "詳細", tweet_path(t.id) %>
-    </div>
-        <%= link_to "編集", edit_tweet_path(t.id) %>
-        <%= button_to "削除", tweet_path(t.id), method: :delete %> 
-    </div>
-    <p class="time"><%= t.created_at %></p>
-    </div>
+<h3>記事一覧</h3>
+
+    <div class="tweets-container">
+    <% @tweets.each do |t| %>
+        <div class="tweet">
+            <div class="main-box">
+                <div class="left-container"><%= t.body %></div>
+                <div class="right-container">
+                
+                    <%= link_to t.user.name, user_path(t.user.id) %> 
+                    <%= t.user.email %> 
+                    <%= t.body %>
+                    <%= t.created_at %>
+                </div>
+                <%= link_to "詳細", tweet_path(t.id) %>
+            <% if user_signed_in? && current_user.id == t.user_id %>
+                <%= link_to "編集する", edit_tweet_path(t.id) %>
+                <%= button_to "削除する", tweet_path(t.id), method: :delete %>
+    <% end %> 
+            </div>
+        <p class="time"><%= t.created_at %></p>
+        </div>
 
     <% if user_signed_in? %>
         <% if current_user.already_liked?(t) %>
-            <%= link_to tweet_like_path(id: t.id, tweet_id: t.id), data: { turbo_method: :delete } do %>
+            <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), data: { turbo_method: :delete } do %>
                 <i class="fa-regular fa-circle-down">保存</i><%= t.likes.count %>
             <% end %>
         <% else %>
-            <%= link_to tweet_likes_path(id: t.id, tweet_id: t.id), data: { turbo_method: :post }  do %>
+            <%= button_to tweet_likes_path(id: t.id, tweet_id: t.id), data: { turbo_method: :post }  do %>
                 <i class="fa-regular fa-circle-down"></i>保存<%= t.likes.count %>
             <% end %>
         <% end %>
     <% else %>
         <i class="fa-regular fa-circle-down">保存</i><%= t.likes.count %>
     <% end %>
-
-    <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-    <%= text_field_tag :tag %>
-    <%= submit_tag 'タグを追加' %>
-<% end %>
-
-<% if user_signed_in? %>
-    <%= link_to "マイページへ", user_path(current_user.id) %>
 <% end %>
 
 
-<%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
-    <% Tag.all.each do |t| %>
-        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
-    <% end %>
-    <%= submit_tag '検索' %>
-<% end %>
 
 </div>
-<% end %>

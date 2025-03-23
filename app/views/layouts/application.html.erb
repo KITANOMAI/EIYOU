@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Geektwitter</title>
+    <title>食べ物のちから
+
+    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+
+<script src="https://kit.fontawesome.com/98181a9346.js" crossorigin="anonymous"></script>
+
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,11 +18,19 @@
 
   <body>
     <header>
-      <h1>GeekTwitter</h1>
+      <h1>食べ物のちから
+
+      </h1>
       <div class="header-list">
       <ul>
-        <li><%= link_to "ホーム", tweets_path %></li>
+        <li><% if user_signed_in? %>
+          <%= link_to "マイページ", user_path(current_user.id) %>
+        <% end %></li>
+        <li><%= link_to "悩み診断", question1_tweets_path %></li>
+        <li><%= link_to "トップページ", tweets_path %></li>
+        <% if current_user && current_user.email == "72125mai.k@gmail.com" %>
         <li><%= link_to "新規投稿",new_tweet_path %></li>
+        <% end %>
       </ul>
       </div>
     </header>

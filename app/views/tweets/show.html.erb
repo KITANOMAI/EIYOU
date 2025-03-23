@@ -13,17 +13,18 @@
         <!-- いいね機能 -->
         <% if user_signed_in? %>
             <% if current_user.already_good?(comment) %>
-                <%= button_to tweet_comment_good_path(@tweet, comment, comment.goods.find_by(user: current_user)), 
-                            method: :delete, data: { turbo_method: :delete } do %>
-                    <p>いいねを取り消す</p><%= comment.goods.count %>
+                <%= button_to tweet_comment_good_path(@tweet, comment, comment.goods.find_by(user: current_user)), method: :delete, data: { turbo_method: :delete } do %>
+                    <i class="fa-solid fa-heart"></i><%= comment.goods.count %>
                 <% end %>
             <% else %>
-                <%= button_to tweet_comment_goods_path(@tweet, comment), 
-                            method: :post, data: { turbo_method: :post } do %>
-                    <p>いいね</p><%= comment.goods.count %>
+                <%= button_to tweet_comment_goods_path(@tweet, comment), method: :post, data: { turbo_method: :post } do %>
+                    <i class="fa-regular fa-heart"></i><%= comment.goods.count %>
                 <% end %>
             <% end %>
-        <% end %>
+    <% else %>
+        <i class="fa-regular fa-heart"></i><%= comment.goods.count %>
+    <% end %>
+        
         <br>
     <% end %>
 
